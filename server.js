@@ -1,5 +1,10 @@
 var http = require('http');
 var sh = require('shelljs');
+var path = require('path');
+var bodyParser = require('body-parser');
+var multer  = require('multer');
+var express = require('express');
+var app = express();
 
 //Lets define a port we want to listen to
 const PORT=8080;
@@ -10,26 +15,37 @@ var executionStr = "";
 var execution_script_name = "run_afib_cardio24.sh";
 var runtime = "/usr/local/MATLAB/MATLAB_Compiler_Runtime/v717";
 
-//We need a function which handles requests and send response
-function handleRequest(request, response){
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-    var shellArgs = "";
-    shellArgs = shellArgs.concat(request.files.ecg_data);
-    executionStr = execution_script_name + " " + runtime + " " + shellArgs;
+app.use(multer({
+  dest: path.join(__dirname, 'uploads'),
 
-    var output = sh.exec(executionStr, {silent:true}).output;
+  onFileUploadStart: function (file, req, res) {
+    console.log(file.fieldname + ' is starting ...')
+  },
 
-    var desired_output = output.split(startOutputStr)[1].split(endOutputStr)[0];
-    var outputJSON = JSON.parse(desired_output);
+  onFileUploadComplete: function (file, req, res) {
+    console.log(file.fieldname + ' uploaded to  ' + file.path)
+  }
+}));
 
-    response.end(outputJSON);
-}
+app.post('/', function (req, res) {
+  var shellArgs = "";
+  shellArgs = shellArgs.concat(req.files.ecg_data);
+  executionStr = execution_script_name + " " + runtime + " " + shellArgs;
 
-//Create a server
-var server = http.createServer(handleRequest);
+  var output = sh.exec(executionStr, {silent:true}).output;
 
-//Lets start our server
-server.listen(PORT, function(){
-    //Callback triggered when server is successfully listening. Hurray!
-    console.log("Server listening on: http://localhost:%s", PORT);
+  var desired_output = output.split(startOutputStr)[1].split(endOutputStr)[0];
+  var outputJSON = JSON.parse(desired_output);
+  res.end(outputJSON);
+
+});
+
+var server = app.listen(PORT, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
 });
