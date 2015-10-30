@@ -14,7 +14,7 @@ var runtime = "/usr/local/MATLAB/MATLAB_Compiler_Runtime/v717";
 function handleRequest(request, response){
 
     var shellArgs = "";
-    shellArgs = shellArgs.concat(req.files.ecg_data);
+    shellArgs = shellArgs.concat(request.files.ecg_data);
     executionStr = execution_script_name + " " + runtime + " " + shellArgs;
 
     var output = sh.exec(executionStr, {silent:true}).output;
