@@ -35,7 +35,7 @@ app.post('/', function (req, res) {
   shellArgs = shellArgs.concat(req.files.ecg_data);
   executionStr = execution_script_name + " " + runtime + " " + shellArgs;
 
-  var output = sh.exec(executionStr, {silent:true}).output;
+  var output = sh.exec(executionStr, {silent:false}).output;
 
   var desired_output = output.split(startOutputStr)[1].split(endOutputStr)[0];
   var outputJSON = JSON.parse(desired_output);
