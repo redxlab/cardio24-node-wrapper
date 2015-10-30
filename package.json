@@ -1,0 +1,16 @@
+{
+	"name": "Cardio-Stub",
+	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"scripts": {
+		"start": "node server.js",
+		"test": "mocha"
+	},
+	"dependencies": {
+		"shelljs": "^0.5.3"
+	},
+	"license": "MIT"
+}
