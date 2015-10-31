@@ -30,6 +30,11 @@ app.use(multer({
   }
 }));
 
+app.get('/', function (req, res) {
+  res.end("Hello World");
+
+});
+
 app.post('/', function (req, res) {
   var shellArgs = "";
   shellArgs = shellArgs.concat(req.files.ecg_data.path);
