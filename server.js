@@ -12,7 +12,7 @@ const PORT=8080;
 var startOutputStr = "::startoutput::";
 var endOutputStr = "::endoutput::";
 var executionStr = "";
-var execution_script_name = "run_afib_cardio24.sh";
+var execution_script_name = "./lib/run_afib_cardio24.sh";
 var runtime = "/usr/local/MATLAB/MATLAB_Compiler_Runtime/v717";
 
 app.use(bodyParser.json());
