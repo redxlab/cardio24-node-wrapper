@@ -40,10 +40,14 @@ else
 fi
 
 #read output file generated from matlab and echo its contents
-filename=$2
+filepath=$2
+curdir=`dirname filepath`
+filename=`basename filepath`
+opfilename=${filename::-4}_op.txt
+
 #cat ${filename::-4}_op.txt
 echo "::startoutput::"
 #cat 11f97c225e3204761f41378e1f2779e7_op.txt
-cat ${filename::-4}_op.txt
+cat $curdir"../"$opfilename
 echo "::endoutput::"
 exit
