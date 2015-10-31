@@ -32,7 +32,7 @@ app.use(multer({
 
 app.post('/', function (req, res) {
   var shellArgs = "";
-  shellArgs = shellArgs.concat(req.files.ecg_data);
+  shellArgs = shellArgs.concat(req.files.ecg_data.name);
   executionStr = execution_script_name + " " + runtime + " " + shellArgs;
 
   var output = sh.exec(executionStr, {silent:false}).output;
