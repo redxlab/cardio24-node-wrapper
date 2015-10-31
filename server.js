@@ -32,8 +32,8 @@ app.use(multer({
 
 app.post('/', function (req, res) {
   var shellArgs = "";
-  shellArgs = shellArgs.concat(req.files.ecg_data.name);
-  executionStr = execution_script_name + " " + runtime + " " + shellArgs;
+  shellArgs = shellArgs.concat(req.files.ecg_data.path);
+  executionStr = execution_script_name + " " + runtime + " " + shellArgs + " 250";
 
   var output = sh.exec(executionStr, {silent:false}).output;
 
