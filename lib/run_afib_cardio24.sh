@@ -8,6 +8,13 @@
 # arg3 = sampling frequency
 #
 exe_name=$0
+
+#read output file generated from matlab and echo its contents
+filepath="$2"
+curdir=`dirname "$filepath"`
+filename=`basename "$filepath"`
+opfilename=$(echo -n $filename | head -c -4)_op.txt
+
 exe_dir=`dirname "$0"`
 #echo "------------------------------------------"
 if [ "x$1" = "x" ]; then
@@ -40,14 +47,11 @@ else
 fi
 
 #read output file generated from matlab and echo its contents
-filepath=$2
-curdir=`dirname filepath`
-filename=`basename filepath`
-opfilename=${filename::-4}_op.txt
-
+#echo $opfilename
 #cat ${filename::-4}_op.txt
 echo "::startoutput::"
 #cat 11f97c225e3204761f41378e1f2779e7_op.txt
-cat $curdir"../"$opfilename
+cat $curdir"/../"$opfilename
+#echo "hello"
 echo "::endoutput::"
 exit
