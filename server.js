@@ -47,7 +47,7 @@ app.post('/', function (req, res) {
   //res.end(desired_output);
 
   var req_data = req.params.ecg_data;
-  res.end(req_data);
+  res.send("data: "+req_data);
 
 });
 
