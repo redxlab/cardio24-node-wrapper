@@ -51,7 +51,7 @@ fi
 #cat ${filename::-4}_op.txt
 echo "::startoutput::"
 #cat 11f97c225e3204761f41378e1f2779e7_op.txt
-cat $curdir"/../lib/"$opfilename
+cat $curdir"/../"$opfilename
 #echo "hello"
 echo "::endoutput::"
 exit

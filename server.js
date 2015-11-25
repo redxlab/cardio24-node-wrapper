@@ -16,7 +16,7 @@ var startOutputStr = "::startoutput::";
 var endOutputStr = "::endoutput::";
 var executionStr = "";
 var execution_script_name = "./lib/run_afib_cardio24.sh";
-var runtime = "/usr/local/MATLAB/MATLAB_Compiler_Runtime/v717";
+var runtime = "/usr/local/MATLAB/MATLAB_Compiler_Runtime/v84";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
