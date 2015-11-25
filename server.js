@@ -50,7 +50,7 @@ app.post('/', function (req, res) {
         shellArgs = shellArgs.concat(path.resolve(__dirname)+"/data/"+now+".txt");
         executionStr = execution_script_name + " " + runtime + " " + shellArgs + " 250";
         console.log(executionStr);
-        var output = sh.exec(executionStr, {silent:true}).output;
+        var output = sh.exec(executionStr, {silent:false}).output;
 
         var desired_output = output.split(startOutputStr)[1].split(endOutputStr)[0];
         var outputJSON = JSON.parse(desired_output);
