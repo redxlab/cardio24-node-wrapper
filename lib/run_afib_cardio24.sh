@@ -50,8 +50,8 @@ fi
 #echo $opfilename
 #cat ${filename::-4}_op.txt
 echo "::startoutput::"
-cat 3608de7d3f6e4b824ee01c284d108e4f_op.txt
-#cat $curdir"/../"$opfilename
+#cat 3608de7d3f6e4b824ee01c284d108e4f_op.txt
+cat $curdir"/../"$opfilename
 #echo "hello"
 echo "::endoutput::"
 exit
